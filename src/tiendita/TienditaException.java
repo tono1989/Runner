@@ -4,6 +4,8 @@
  */
 package tiendita;
 
+import javax.swing.JTextArea;
+
 /**
  *
  * @author ubuntu
@@ -14,7 +16,7 @@ public class TienditaException extends Exception {
         super(string);
     }
     
-    public static void reportaError(String s){
-        System.out.println("Error. " + s);
+    public static void reportaError(String s,JTextArea textArea){
+        textArea.setText("Error. " + s);
     }
 }
