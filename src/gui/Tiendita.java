@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import tiendita.BD;
 import tiendita.Producto;
 import tiendita.TienditaException;
+import tiendita.Vendedor;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Tiendita extends javax.swing.JFrame {
     Connection conn = null;
     String usuario = "root";
     String contraseña = "ciortv";
+    Vendedor vendedor = new Vendedor("java");
     
     /**
      * Creates new form Tiendita
@@ -100,6 +102,11 @@ public class Tiendita extends javax.swing.JFrame {
         });
 
         buttonVender.setText("Vender");
+        buttonVender.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonVenderMouseClicked(evt);
+            }
+        });
 
         listaDeProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -410,7 +417,7 @@ public class Tiendita extends javax.swing.JFrame {
                         //String q = modelo.getValueAt(i, 2).toString();
                         cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
                         cantidad ++;
-                        modelo.setValueAt(cantidad + "", i, 2);   
+                        modelo.setValueAt(cantidad, i, 2);   
                         existeUPC = false;
                     }
                 }
@@ -589,6 +596,24 @@ public class Tiendita extends javax.swing.JFrame {
             textUpcAdmin.setText ("");
         }
     }//GEN-LAST:event_textUpcAdminKeyReleased
+
+    private void buttonVenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonVenderMouseClicked
+        
+        DefaultTableModel l = 
+                (DefaultTableModel)this.listaDeProductos.getModel();
+        try{
+            vendedor.realizaVenta(l.getDataVector(),conn);
+            
+            //metodo clear lista de productos.
+            // TODO hay que cuidarse de los errores. Analisar
+            while (l.getRowCount() > 0){
+                l.removeRow(0);
+            }
+        }catch(TienditaException e){
+            TienditaException.reportaError(e.getMessage(), textAreaMensajes);
+        }
+        
+    }//GEN-LAST:event_buttonVenderMouseClicked
 
     /**
      * @param args the command line arguments
