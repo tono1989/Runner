@@ -11,7 +11,7 @@ import java.util.Properties;
 
 /**
  *
- * @author ubuntu
+ * @author toño
  */
 public class BD {
     
