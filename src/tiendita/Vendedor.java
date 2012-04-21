@@ -29,7 +29,7 @@ public class Vendedor {
         if (conn == null) 
             throw new TienditaException("Error. No hay conexion con la base de datos.");
         
-        String update = "update Inventario set existencias = ? where upc = ?";
+        String update = "update Inventario set existencias = existencias - ? where upc = ?";
         Vector v;
         String upc;
         int cantidad;
