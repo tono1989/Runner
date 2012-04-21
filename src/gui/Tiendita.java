@@ -606,9 +606,11 @@ public class Tiendita extends javax.swing.JFrame {
             
             //metodo clear lista de productos.
             // TODO hay que cuidarse de los errores. Analisar
-            while (l.getRowCount() > 0){
+            while (l.getRowCount() > 0){ 
                 l.removeRow(0);
             }
+            
+            lableTotal.setText("$ 0.0");
         }catch(TienditaException e){
             TienditaException.reportaError(e.getMessage(), textAreaMensajes);
         }
