@@ -362,7 +362,7 @@ public class Tiendita extends javax.swing.JFrame {
         textAreaMensajes.setRows(5);
         jScrollPane4.setViewportView(textAreaMensajes);
 
-        jLabel1.setText("Mensajes");
+        jLabel1.setText("errores");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
